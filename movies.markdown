@@ -4,10 +4,10 @@ title: Movies
 permalink: /movies/
 ---
 
-# Movie log
+## Movie log
 This is a list of movies to watch with Camilla. Not all movies to watch are listed.
 
-## Alphabetical List
+### Alphabetical List
 * 10 Things I Hate About You (2020/9/11)
 * American Beauty
 * The Big Lebowski
