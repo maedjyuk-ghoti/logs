@@ -1,0 +1,21 @@
+---
+layout: page
+title: Movies
+permalink: /movies/
+---
+
+# Movie log
+## Alphabetical
+* 10 Things I Hate About You (2020/9/11)
+* American Beauty
+* The Big Lebowski
+* Clueless
+* Donnie Darko
+* The Family Stone
+* Fight Club
+* The Little Hours
+* Lost in Translation
+* Mean Girls
+* Moana (2020/9/6)
+* The Princess Bride
+* Zenon: 21st Century Girl
