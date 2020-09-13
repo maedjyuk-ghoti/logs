@@ -38,3 +38,12 @@ One thing I have never been is in shape. I have been healthy and able, but never
 Run a 5k. I plan to achieve this by using FitBit Coach to regulate sessions 3 times. Because of the Pandemic an official 5k might be out, but running one on my own with a gps tracker as proof should work.
 
 While I love swimming, having grown up in South Florida where swimming was basically mandatory given the amount of water and pool season being 8-10 months of the year. It's much harder to find a swimming pool plus driving there is effort. Running is something that sounds terrible but I've never really tried to do it before. I don't know anything about running. Watching Usain Bolt in the Olympics is the most I've ever seen. Combined with being awful at it, that leaves no basis for comparison which sounds perfect.
+
+### Read Meditations
+Philosphy has never been at the top of my list of interests. But the Pandemic (common theme) has brought some things up that leave me mentally wandering around more than usual. The Meditations is a book that I've seen highly regarded as an introduction to Stoicism. And now seems like a great time to learn about it and see if it can help me at all in my life.
+
+#### Goal
+Read and discuss Meditations with my friend Josh who happens to have spent a great deal of time reading and discussing writings such as this.
+
+## Wrap-up
+3 goals seems rather light, but I figure starting light to get momentum will encourage me to create another `X Time Plan`. There are many other things I want to work on and will probably end up trying, but I won't hold myself accountable for them yet. There are also goals that are impossible to judge because of the dynamics involved. Last, but not least, the plans that cannot be written in public because sharing those might not have the desired/a desirable outcome.
