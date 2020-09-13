@@ -39,7 +39,7 @@ Run a 5k. I plan to achieve this by using FitBit Coach to regulate sessions 3 ti
 
 While I love swimming, having grown up in South Florida where swimming was basically mandatory given the amount of water and pool season being 8-10 months of the year. It's much harder to find a swimming pool plus driving there is effort. Running is something that sounds terrible but I've never really tried to do it before. I don't know anything about running. Watching Usain Bolt in the Olympics is the most I've ever seen. Combined with being awful at it, that leaves no basis for comparison which sounds perfect.
 
-### Read Meditations
+### Reading
 Philosphy has never been at the top of my list of interests. But the Pandemic (common theme) has brought some things up that leave me mentally wandering around more than usual. The Meditations is a book that I've seen highly regarded as an introduction to Stoicism. And now seems like a great time to learn about it and see if it can help me at all in my life.
 
 #### Goal
