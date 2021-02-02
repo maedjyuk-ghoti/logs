@@ -5,7 +5,7 @@ permalink: /movies/
 ---
 
 ## Movie log
-This is a list of movies to watch with Camilla. Not all movies to watch are listed.
+This is a list of movies to watch. Not all movies to watch are listed.
 
 ### Alphabetical List
 * 10 Things I Hate About You (2020/9/11)

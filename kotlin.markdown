@@ -1,0 +1,99 @@
+---
+layout: page
+title: Kotlin
+permalink: /kotlin/
+---
+
+# Congratulations!
+You've finally become comfortable not using semicolons! That's a nice step, but there is more to explore.
+
+# Note
+Some of the concepts here will have a java equivalent, some will not. This does not have any bearing on their value.
+
+# Topics include:
+## Basic
+* objects & companion objects
+* backing properties
+* lateinit
+* interfaces
+* extensions
+* data classes
+* sealed classes
+* enums
+
+## Advanced
+* higher-order functions
+* lambdas
+* destructuring
+* scope functions
+* null safety
+* sequence & iterables
+
+### Objects & Companions Objects
+Essentially a singleton. Can be used as the basis for one of anonymous classes,
+```
+office.addWindowController(object : WindowController() {
+    override fun openWindow() { /*...*/ }
+    override fun closeWindow() { /*...*/ }
+})
+```
+as well as a formal singleton.
+```
+object Highlander {
+    ...
+}
+```
+They can be have supertypes too, so the above would be more correct as, say
+```
+interface Immortal {
+    ...
+}
+
+object Highlander : Immortal {
+    ...
+}
+
+object Kurgan : Immortal {
+    ...
+}
+```
+Companion Objects belong to a class. This can be used as a way to give more context for their contents.
+```
+class MyClass {
+    ...
+
+    companion object Words {
+        val wordOfTheDay = "gratuitous"
+        val useInSentence(): String {
+            "The word of the day is: $wordOfTheyDay" 
+        }
+    }
+
+    ...
+}
+
+fun exampleUse() {
+    println(MyClass.Words.useInSentence())
+}
+```
+Companion Objects don't have to be named, in which case they can be referred to as `Companion`
+```
+class MyClass {
+    ...
+
+    companion object {
+        val wordOfTheDay = "gratuitous"
+        val useInSentence(): String {
+            "The word of the day is: $wordOfTheyDay" 
+        }
+    }
+
+    ...
+}
+
+fun exampleUse() {
+    println(MyClass.Companion.useInSentence())
+}
+```
+
+### Backing Properties
