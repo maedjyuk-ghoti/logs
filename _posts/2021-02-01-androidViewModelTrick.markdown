@@ -1,7 +1,8 @@
 ---
-layout: page
+layout: post
 title: Android View Model Trick
-permalink: /androidViewModelTrick/
+date: 2021-02-01 18:30:45 -0400
+categories: programming kotlin
 ---
 
 # Introduction

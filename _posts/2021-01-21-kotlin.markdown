@@ -1,8 +1,10 @@
 ---
-layout: page
+layout: post
 title: Kotlin
-permalink: /kotlin/
+date: 2021-01-21 20:11:32 -0400
+categories: programming kotlin
 ---
+*** Work in progress ***
 
 # Congratulations!
 You've finally become comfortable not using semicolons! That's a nice step, but there is more to explore.
