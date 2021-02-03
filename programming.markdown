@@ -5,4 +5,5 @@ permalink: /programming/
 ---
 
 # Posts
-[Android View Model Trick](2021-02-01-androidViewModelTricks.markdown)
+* [Kotlin Foundations]({% post_url 2021-01-21-kotlin %})
+* [Android View Model Trick]({% post_url 2021-02-01-androidViewModelTrick %})
