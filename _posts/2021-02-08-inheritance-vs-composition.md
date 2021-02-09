@@ -191,7 +191,7 @@ class CountingCollection<E> : HashSet<E>() {
 Let's look at a test for `CountingCollection<E>.add(...)`:
 ```
 @Test
-fun `test add(1)` {
+fun `test add(1)`() {
     val cc = CountingCollection<String>()
     assertTrue(cc.add("Hello"))
     assertEqual(1, cc.counter)
@@ -200,7 +200,7 @@ fun `test add(1)` {
 So far so good. How about `CountingCollection<E>.addAll(...)`:
 ```
 @Test
-fun `test addAll(1)` {
+fun `test addAll(1)`() {
     val cc = CountingCollection<String>()
     assertTrue(cc.addAll(listOf("Hello", "Hello")))
     assertEqual(2, cc.counter)
