@@ -245,7 +245,7 @@ And the tests:
 private val mockCollection: Collection<String> = mock()
 
 @Test
-fun `test add(1)` {
+fun `test add(1)`() {
     `when`(mockCollection.add(any())).thenReturn(true)
     val cc = CountingCollection<String>(mockCollection)
     assertTrue(cc.add("Hello"))
@@ -253,7 +253,7 @@ fun `test add(1)` {
 }
 
 @Test
-fun `test addAll(1)` {
+fun `test addAll(1)`() {
     `when`(mockCollection.addAll(any())).thenReturn(true)
     val cc = CountingCollection<String>(mockCollection)
     assertTrue(cc.addAll(listOf("Hello", "Hello")))
@@ -263,7 +263,7 @@ fun `test addAll(1)` {
 Now the collection backing our `CountingCollection` class is completely separate. This allows us to test under a variety of circumstances. Even seeding it with data to test against
 ```
 @Test
-fun `test addAll(1)` {
+fun `test addAll(1)`() {
     val testSet = setOf("foo", "bar")
     val cc = CountingCollection<String>(testSet)
     assertTrue(cc.addAll(listOf("Hello", "World")))
