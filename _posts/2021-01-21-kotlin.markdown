@@ -33,20 +33,20 @@ Some of the concepts here will have a java equivalent, some will not. This does 
 
 ### Objects & Companions Objects
 Essentially a singleton. Can be used as the basis for one of anonymous classes,
-```
-office.addWindowController(object : WindowController() {
+```kotlin
+office.addWindowController(object: WindowController() {
     override fun openWindow() { /*...*/ }
     override fun closeWindow() { /*...*/ }
 })
 ```
 as well as a formal singleton.
-```
+```kotlin
 object Highlander {
     ...
 }
 ```
 They can be have supertypes too, so the above would be more correct as, say
-```
+```kotlin
 interface Immortal {
     ...
 }
@@ -60,15 +60,14 @@ object Kurgan : Immortal {
 }
 ```
 Companion Objects belong to a class. This can be used as a way to give more context for their contents.
-```
+```kotlin
 class MyClass {
     ...
 
     companion object Words {
         val wordOfTheDay = "gratuitous"
-        val useInSentence(): String {
+        fun useInSentence(): String =
             "The word of the day is: $wordOfTheyDay" 
-        }
     }
 
     ...
@@ -79,7 +78,7 @@ fun exampleUse() {
 }
 ```
 Companion Objects don't have to be named, in which case they can be referred to as `Companion`
-```
+```kotlin
 class MyClass {
     ...
 

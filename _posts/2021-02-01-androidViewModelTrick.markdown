@@ -14,7 +14,7 @@ The crux of the idea is that ViewModels are associated with a LifecycleOwner. Th
 ## Parent Activity and Child Fragment
 Let's contrive a scenario. Please ignore any faulty LiveData code.
 
-```
+```kotlin
 // Need a ViewModel to hold the data we want to display
 class MainActivityViewModel : ViewModel() {
     private val _count: MutableLiveData<Int> = MutableLiveData<Int>()
@@ -76,7 +76,7 @@ In our Fragment we also have a ViewModel. We obtain this by providing the Parent
 
 This is because Android hides things behind the scenes and ensures that there is only ever 1 ViewModel of a type at a time for each LifecycleOwner. Because we're asking for the same ViewModel by the same LifecycleOwner we get the same ViewModel. Notice, that because it's tied to the LifecycleOwner, the Fragment can still have it's own ViewModel.
 
-```
+```kotlin
 class SomeFragmentViewModel : ViewModel() {
     ...
 }
@@ -112,7 +112,7 @@ The case for Fragment Peers is identical to Parent Activity/Fragment and child F
 ## Factories
 Sometimes you want to instantiate your ViewModel with some values, in which case you would have to create a ViewModelFactory so that Android can recreate your ViewModel in case it deletes it. This is the purpose of the factory. It doesn't change much from the previous examples except in the Parent Activity/Fragment. There the ViewModelFactory will have to be created and used. In all child Fragments, the factory is omitted because the ViewModel should already be created.
 
-```
+```kotlin
 class MainActivityViewModel(initialCount: Int) : ViewModel() {
     private val _count: MutableLiveData<Int> = MutableLiveData<Int>()
     

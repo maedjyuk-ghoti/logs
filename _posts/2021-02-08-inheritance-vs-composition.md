@@ -24,7 +24,7 @@ In Effective Java, Joshua Bloc writes "Item 16: Prefer composition over inherita
 # Basic Examples
 ## Fragile Base Class
 The common example given at this point is the `CountingHashSet` or `CountingArrayList`. Really any `CountingCollection`.
-```
+```kotlin
 class CountingHashSet<E> : HashSet<E>() {
     var counter: Int = 0
         private set
@@ -41,7 +41,7 @@ class CountingHashSet<E> : HashSet<E>() {
 }
 ```
 And then you are asked to evaluate what the output will be for the following code:
-```
+```kotlin
 val s = CountingHashSet<String>()
 s.addAll(listOf("A","B","C"))
 println("${s.counter}")
@@ -50,7 +50,7 @@ Did you get `3`? Is it possible to get anything else? What about `6`? Did you kn
 
 ## Leaking APIs
 Consider the following:
-```
+```kotlin
 class MyList : ArrayList<Int>() {
     override fun add(element: Int): Boolean {
         return super.add(element)
@@ -62,7 +62,7 @@ class MyList : ArrayList<Int>() {
 }
 ```
 What can you do with this class? Well, you can `add` and `addAll` of course. Did you also know you can do anything that `List` allows? The entirety of `List` is exposed for use.
-```
+```kotlin
 val myList = MyList()
 myList.size
 myList.clear()
@@ -72,7 +72,7 @@ myList.contains(1)
 
 ## The Fix
 The fix for both of these issues is not to use inheritance, but composition. (note: these will not be perfect and will only address the issues brought up in their sections)
-```
+```kotlin
 class CountingHashSet<E>(private val hs: HashSet<E>) {
     var counter: Int = hs.size
         private set
@@ -89,7 +89,7 @@ class CountingHashSet<E>(private val hs: HashSet<E>) {
 }
 ```
 and
-```
+```kotlin
 class MyList(private val al: ArrayList<Int>) {
     fun add(element: Int): Boolean {
         return al.add(element)
@@ -104,7 +104,7 @@ class MyList(private val al: ArrayList<Int>) {
 # Going Further
 ## 2 types of inheritance
 It should be noted that there are 2 types of inheritance. The Basic Examples section only dealt with class, or implementation, inheritance which is characterized with the use of `extends` in Java. In Kotlin, it is characterized by calling the constuctor `()` in the class definition.
-```
+```kotlin
 // Java
 public class MyArrayList<E> extends ArrayList<E> {...}
 
@@ -112,7 +112,7 @@ public class MyArrayList<E> extends ArrayList<E> {...}
 class MyArrayList<E> : ArrayList<E>() {...}
 ```
 Interface inheritance is characterized by the `implements` keyword in Java and no constructor call in Kotlin.
-```
+```kotlin
 // Java
 public class MyList<E> implements List<E> {...}
 
@@ -123,15 +123,15 @@ Interface inheritance is prefered over implementation inheritance. In this way n
 
 ## Flexibility
 On its own, preferring Composition over Inheritance does not grant flexibility to design.
-```
+```kotlin
 class MyArrayList<E> : ArrayList<E> {...}
 class MyArrayList<E>(private val al: ArrayList<E>) {...}
 ```
 Though it could be argued that the composition variation allows any subclass of ArrayList, there is no appreciable difference in flexibility here as anything passed in would be inheriting all the details of ArrayList. Instead, if we prefer the least restrictive option that suits our goals, we can plug in different implementations as needed.
-```
-1: class MyClass<E>(private val l: List<E>) {...}
-2: class MyClass<E>(private val c: Collection<E>) {...}
-3: class MyClass<E>(private val i: Iterable<E>) {...}
+```kotlin
+class MyClass<E>(private val l: List<E>) {...}       // 1
+class MyClass<E>(private val c: Collection<E>) {...} // 2
+class MyClass<E>(private val i: Iterable<E>) {...}   // 3
 ```
 In this manner:
 * 1 can take an ArrayList or a LinkedList just as easiliy.
@@ -142,15 +142,17 @@ Pick what is appropriate for your use. If you require a list over a set, use opt
 
 ## Eat Elsewhere
 I like books. The following quote comes from a book. But not a programming book.
-```
-"What are the three most important rules of the chemist?"
-"Label clearly. Measure twice. Eat elsewhere."
-- Patrick Rothfuss, The Name of the Wind
-```
+
+> "What are the three most important rules of the chemist?"
+>
+> "Label clearly. Measure twice. Eat elsewhere."
+>
+> -- Patrick Rothfuss, The Name of the Wind
+
 There is probably a better word here (something less full of baggage than Dependency Injection) but this quote expresses the point quite well enough. Don't create and use in the same place or you lose a lot of flexibility.
 
 What are the differences between the following?
-```
+```kotlin
 class MyClass<E> {
     private val l: List<E> = arrayListOf<E>()
     ...
@@ -158,7 +160,7 @@ class MyClass<E> {
 val mc = MyClass<Int>()
 ```
 and
-```
+```kotlin
 class MyClass<E>(private val l: List<E>) {...}
 val mc = MyClass<Int>(arrayListOf<Int>())
 ```
@@ -172,7 +174,7 @@ Taking all of the above, from the Basic Examples and Going Further sections, we 
 When you inherit an implementation you inherit and all of its implementation details _and_ any flaws. This can make testing a headache where you end up partially debugging the base class. This quickly turns into a nightmare when you can't fix the base class because it's provided by a framework or library.
 
 Let's revist the first example and talk through some ideas.
-```
+```kotlin
 class CountingCollection<E> : HashSet<E>() {
     var counter: Int = 0
         private set
@@ -189,25 +191,25 @@ class CountingCollection<E> : HashSet<E>() {
 }
 ```
 Let's look at a test for `CountingCollection<E>.add(...)`:
-```
+```kotlin
 @Test
-fun `test add(1)`() {
+fun test_add() {
     val cc = CountingCollection<String>()
     assertTrue(cc.add("Hello"))
     assertEqual(1, cc.counter)
 }
 ```
 So far so good. How about `CountingCollection<E>.addAll(...)`:
-```
+```kotlin
 @Test
-fun `test addAll(1)`() {
+fun test_addAll() {
     val cc = CountingCollection<String>()
     assertTrue(cc.addAll(listOf("Hello", "Hello")))
     assertEqual(2, cc.counter)
 }
 ```
 Oh no! This test will fail. Can you guess why? Did you guess that it's because the underlying `HashSet<E>.addAll(...)` returns false when the same string is added twice? Awesome! So we just change the test... wait! Are we testing our extension or `HashSet<E>`? Using only composition wouldn't fix this.
-```
+```kotlin
 class CountingCollection<E> {
     private val hs: HashSet<E> = hashSetOf<E>()
     var counter: Int = 0
@@ -216,7 +218,7 @@ class CountingCollection<E> {
 }
 ```
 It has all of the same flaws as far as testing is concerned. Even loosening the restrictive class type doesn't help.
-```
+```kotlin
 class CountingHashSet<E> {
     private val hs: Collection<E> = hashSetOf<E>()
     ...
@@ -224,7 +226,7 @@ class CountingHashSet<E> {
 ```
 
 Let's try the composition version:
-```
+```kotlin
 class CountingCollection<E>(private val hs: Collection<E>) {
     var counter: Int = hs.size
         private set
@@ -241,11 +243,11 @@ class CountingCollection<E>(private val hs: Collection<E>) {
 }
 ```
 And the tests:
-```
+```kotlin
 private val mockCollection: Collection<String> = mock()
 
 @Test
-fun `test add(1)`() {
+fun test_add() {
     `when`(mockCollection.add(any())).thenReturn(true)
     val cc = CountingCollection<String>(mockCollection)
     assertTrue(cc.add("Hello"))
@@ -253,7 +255,7 @@ fun `test add(1)`() {
 }
 
 @Test
-fun `test addAll(1)`() {
+fun test_addAll() {
     `when`(mockCollection.addAll(any())).thenReturn(true)
     val cc = CountingCollection<String>(mockCollection)
     assertTrue(cc.addAll(listOf("Hello", "Hello")))
@@ -261,9 +263,9 @@ fun `test addAll(1)`() {
 }
 ```
 Now the collection backing our `CountingCollection` class is completely separate. This allows us to test under a variety of circumstances. Even seeding it with data to test against
-```
+```kotlin
 @Test
-fun `test addAll(1)`() {
+fun test_addAll() {
     val testSet = setOf("foo", "bar")
     val cc = CountingCollection<String>(testSet)
     assertTrue(cc.addAll(listOf("Hello", "World")))
